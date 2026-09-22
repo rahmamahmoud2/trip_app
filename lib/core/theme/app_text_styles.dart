@@ -28,8 +28,8 @@ abstract class AppTextStyles {
   /// Skip Button text
   static TextStyle get skipButton => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w600,
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w500,
     color: AppColors.white,
   );
 

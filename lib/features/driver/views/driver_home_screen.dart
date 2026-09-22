@@ -182,13 +182,16 @@ class _DriverHomeScreenBodyState extends State<_DriverHomeScreenBody> {
             ),
           ),
 
-        // Bottom Sheet or Keypad depending on state
+        // Floating request card or Keypad depending on state
         if (state.step == DriverStep.requestDetails)
           Positioned(
             left: 0,
             right: 0,
             bottom: 0,
-            child: DriverRequestDetailsSheet(state: state, cubit: cubit),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: DriverRequestDetailsSheet(state: state, cubit: cubit),
+            ),
           )
         else if (state.step == DriverStep.customFare)
           Positioned.fill(

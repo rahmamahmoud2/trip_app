@@ -5,6 +5,7 @@ import '../../../../core/constants/app_strings.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../models/onboarding_item_model.dart';
 import 'onboarding_indicator.dart';
+import 'onboarding_spacing.dart';
 
 class OnboardingBottomBar extends StatelessWidget {
   final int currentPage;
@@ -23,7 +24,7 @@ class OnboardingBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 15.w, right: 15.w, bottom: 20.h, top: 6.h),
+      padding: OnboardingSpacing.bottomBarPadding,
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
         child: isLastPage
@@ -33,7 +34,6 @@ class OnboardingBottomBar extends StatelessWidget {
     );
   }
 
-  ///  Indicator Dots and Next button
   Widget _buildIndicatorAndNextRow() {
     return Row(
       key: const ValueKey('indicator_and_next'),
@@ -43,15 +43,19 @@ class OnboardingBottomBar extends StatelessWidget {
           currentIndex: currentPage,
           count: OnboardingItemModel.pages.length,
         ),
+
         ElevatedButton(
           onPressed: onNext,
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.buttonBg,
             foregroundColor: AppColors.buttonText,
             elevation: 0,
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+            minimumSize: Size(88.w, 44.h),
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.circular(
+                OnboardingSpacing.buttonRadius.r,
+              ),
             ),
           ),
           child: Text(AppStrings.next, style: AppTextStyles.nextButton),
@@ -60,12 +64,11 @@ class OnboardingBottomBar extends StatelessWidget {
     );
   }
 
-  // "Sign Up / Log In" button
   Widget _buildFullWidthAuthButton() {
     return SizedBox(
       key: const ValueKey('auth_full_button'),
       width: double.infinity,
-      height: 55.h,
+      height: 48.h,
       child: ElevatedButton(
         onPressed: onAuthAction,
         style: ElevatedButton.styleFrom(
@@ -73,7 +76,9 @@ class OnboardingBottomBar extends StatelessWidget {
           foregroundColor: AppColors.buttonText,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(
+              OnboardingSpacing.buttonRadius.r,
+            ),
           ),
         ),
         child: Text(AppStrings.signUpLogIn, style: AppTextStyles.authButton),

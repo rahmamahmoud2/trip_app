@@ -6,13 +6,11 @@ import '../../models/driver_request_model.dart';
 class DriverRequestInfoRow extends StatelessWidget {
   final DriverRequestModel request;
   final bool showChevron;
-  final bool showProgressBar;
 
   const DriverRequestInfoRow({
     super.key,
     required this.request,
     this.showChevron = true,
-    this.showProgressBar = false,
   });
 
   @override
@@ -39,18 +37,6 @@ class DriverRequestInfoRow extends StatelessWidget {
             ],
           ],
         ),
-        if (showProgressBar) ...[
-          SizedBox(height: 12.h),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(2.r),
-            child: LinearProgressIndicator(
-              value: 0.65,
-              minHeight: 3.h,
-              backgroundColor: AppColors.borderGray,
-              color: AppColors.primary,
-            ),
-          ),
-        ],
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/app_colors.dart';
+import 'onboarding_spacing.dart';
 
 class OnboardingIndicator extends StatelessWidget {
   final int currentIndex;
@@ -21,14 +22,17 @@ class OnboardingIndicator extends StatelessWidget {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          margin: EdgeInsets.only(right: 6.w),
-          height: 6.h,
-          width: isActive ? 15.w : 6.w,
+          margin: EdgeInsets.only(
+            right: index < count - 1 ? OnboardingSpacing.indicatorGap.w : 0,
+          ),
+          height: OnboardingSpacing.indicatorDotSize.h,
+          width: isActive
+              ? OnboardingSpacing.indicatorActiveWidth.w
+              : OnboardingSpacing.indicatorDotSize.w,
           decoration: BoxDecoration(
             color: isActive
-                ? const Color.fromARGB(102, 5, 5, 5)
+                ? const Color.fromARGB(102, 36, 35, 35)
                 : AppColors.indicatorActive,
-
             borderRadius: BorderRadius.circular(30.r),
           ),
         );

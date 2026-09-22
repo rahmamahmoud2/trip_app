@@ -69,10 +69,7 @@ class DriverWaitingReplyOverlay extends StatelessWidget {
             color: AppColors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
           ),
-          child: DriverRequestInfoRow(
-            request: request,
-            showProgressBar: true,
-          ),
+          child: DriverRequestInfoRow(request: request),
         ),
       ],
     );

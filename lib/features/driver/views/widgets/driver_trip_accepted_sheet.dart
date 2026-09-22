@@ -47,7 +47,7 @@ class _DriverTripAcceptedSheetState extends State<DriverTripAcceptedSheet> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          DriverRequestInfoRow(request: request, showProgressBar: true),
+          DriverRequestInfoRow(request: request),
           SizedBox(height: 14.h),
 
           // time banner
