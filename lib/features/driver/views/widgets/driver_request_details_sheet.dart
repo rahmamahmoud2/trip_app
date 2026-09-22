@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../cubit/driver_cubit.dart';
 import '../../cubit/driver_state.dart';
 import '../../models/driver_request_model.dart';
@@ -20,13 +19,9 @@ class DriverRequestDetailsSheet extends StatelessWidget {
     final request =
         state.selectedRequest ?? DriverRequestModel.mockRequests.first;
 
-    return Padding(
-      padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
-      child: DriverRequestOfferCard(
-        request: request,
-        onAccept: cubit.acceptDirectly,
-        onDecline: cubit.skipRequest,
-      ),
+    return DriverRequestOfferCard(
+      request: request,
+      cubit: cubit,
     );
   }
 }

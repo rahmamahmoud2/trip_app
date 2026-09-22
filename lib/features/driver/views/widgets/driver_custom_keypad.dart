@@ -25,10 +25,7 @@ class DriverCustomKeypadSheet extends StatelessWidget {
       children: [
         const Spacer(),
         _buildFareSheet(customerOffer),
-        SizedBox(
-          height: keypadHeight,
-          child: _buildKeypad(keypadHeight),
-        ),
+        SizedBox(height: keypadHeight, child: _buildKeypad(keypadHeight)),
       ],
     );
   }
@@ -74,14 +71,10 @@ class DriverCustomKeypadSheet extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-          Divider(
-            height: 1,
-            thickness: 1,
-            color: AppColors.borderGray,
-          ),
+          Divider(height: 1, thickness: 1, color: AppColors.borderGray),
           SizedBox(height: 16.h),
           Text(
-            "${AppStrings.customerOffer}: ${AppStrings.egp}$customerOffer",
+            "${AppStrings.customerOffer}: ${AppStrings.egp} $customerOffer",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14.sp,
@@ -121,13 +114,17 @@ class DriverCustomKeypadSheet extends StatelessWidget {
   Widget _buildKeypad(double keypadHeight) {
     const rowGap = 7.0;
     final verticalPadding = 10.h;
-    final keyHeight =
-        (keypadHeight - verticalPadding * 2 - rowGap.h * 3) / 4;
+    final keyHeight = (keypadHeight - verticalPadding * 2 - rowGap.h * 3) / 4;
 
     return ColoredBox(
       color: AppColors.keypadBg,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(6.w, verticalPadding, 6.w, verticalPadding),
+        padding: EdgeInsets.fromLTRB(
+          6.w,
+          verticalPadding,
+          6.w,
+          verticalPadding,
+        ),
         child: Column(
           children: [
             _buildKeyRow(['1', '2', '3'], ['', 'ABC', 'DEF'], keyHeight),
@@ -220,7 +217,7 @@ class DriverCustomKeypadSheet extends StatelessWidget {
             child: Icon(
               Icons.backspace_outlined,
               size: 24.sp,
-              color: AppColors.black,
+              color: const Color.fromARGB(255, 23, 23, 23),
             ),
           ),
         ),

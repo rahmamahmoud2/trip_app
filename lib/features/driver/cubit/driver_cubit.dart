@@ -19,11 +19,12 @@ class DriverCubit extends Cubit<DriverState> {
   }
 
   void selectRequest(DriverRequestModel request) {
+    final defaultCounterFare = request.offeredFare + 9;
     emit(
       state.copyWith(
         selectedRequest: request,
-        counterFare: 59,
-        fareInputString: '59',
+        counterFare: defaultCounterFare,
+        fareInputString: defaultCounterFare.toString(),
         step: DriverStep.requestDetails,
       ),
     );
@@ -37,6 +38,17 @@ class DriverCubit extends Cubit<DriverState> {
         clearSelectedRequest: true,
       ),
     );
+  }
+
+  void acceptCustomerOffer() {
+    final offered = state.selectedRequest?.offeredFare ?? 50;
+    emit(
+      state.copyWith(
+        counterFare: offered,
+        fareInputString: offered.toString(),
+      ),
+    );
+    submitOffer();
   }
 
   void acceptDirectly() {
