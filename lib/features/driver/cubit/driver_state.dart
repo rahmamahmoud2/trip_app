@@ -16,6 +16,7 @@ class DriverState {
   final DriverRequestModel? selectedRequest;
   final int counterFare;
   final String fareInputString;
+  final double offerProgress;
 
   const DriverState({
     this.isOnline = true,
@@ -24,6 +25,7 @@ class DriverState {
     this.selectedRequest,
     this.counterFare = 59,
     this.fareInputString = '59',
+    this.offerProgress = 0.0,
   });
 
   DriverState copyWith({
@@ -34,6 +36,7 @@ class DriverState {
     bool clearSelectedRequest = false,
     int? counterFare,
     String? fareInputString,
+    double? offerProgress,
   }) {
     return DriverState(
       isOnline: isOnline ?? this.isOnline,
@@ -43,6 +46,7 @@ class DriverState {
           clearSelectedRequest ? null : (selectedRequest ?? this.selectedRequest),
       counterFare: counterFare ?? this.counterFare,
       fareInputString: fareInputString ?? this.fareInputString,
+      offerProgress: offerProgress ?? this.offerProgress,
     );
   }
 }

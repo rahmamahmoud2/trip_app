@@ -28,48 +28,71 @@ class DriverWaitingReplyOverlay extends StatelessWidget {
           child: Container(
             color: AppColors.overlayDark,
             alignment: Alignment.center,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  AppStrings.offeringYourFare,
-                  style: TextStyle(
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    AppStrings.offeringYourFare,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white,
+                      height: 1.3,
+                    ),
                   ),
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  '${state.counterFare} ${AppStrings.egp}',
-                  style: TextStyle(
-                    fontSize: 32.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.white,
+                  SizedBox(height: 8.h),
+                  Text(
+                    '${state.counterFare} ${AppStrings.egp}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 36.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.white,
+                      height: 1.1,
+                    ),
                   ),
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  AppStrings.waitingForReplay,
-                  style: TextStyle(
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.white,
+                  SizedBox(height: 8.h),
+                  Text(
+                    AppStrings.waitingForReplay,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white,
+                      height: 1.3,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-
-        // Bottom passenger info card
         Container(
           padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 20.h),
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+            boxShadow: const [
+              BoxShadow(
+                color: AppColors.shadowFloating,
+                blurRadius: 16,
+                offset: Offset(0, -4),
+              ),
+            ],
           ),
-          child: DriverRequestInfoRow(request: request),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DriverRequestInfoRow(
+                request: request,
+                offerProgress: state.offerProgress,
+              ),
+            ],
+          ),
         ),
       ],
     );

@@ -47,49 +47,90 @@ class _DriverTripAcceptedSheetState extends State<DriverTripAcceptedSheet> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          DriverRequestInfoRow(request: request),
-          SizedBox(height: 14.h),
-
-          // time banner
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
-            decoration: BoxDecoration(
-              color: AppColors.pickupTimeBg,
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.access_time_filled,
-                  size: 16.sp,
-                  color: AppColors.primary,
-                ),
-                SizedBox(width: 8.w),
-                Text(
-                  AppStrings.pickupTimeBadge,
-                  style: TextStyle(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.primary,
-                  ),
-                ),
-              ],
-            ),
+          DriverRequestInfoRow(
+            request: request,
+            offerProgress: widget.state.offerProgress,
           ),
           SizedBox(height: 14.h),
-
-          _buildSwipeButton(context),
+          _PickupTimeBanner(pickupTime: request.pickupTime),
+          SizedBox(height: 14.h),
+          _SwipeToStartButton(
+            dragPosition: _dragPosition,
+            onDragUpdate: (delta) {
+              setState(() {
+                _dragPosition += delta;
+                if (_dragPosition < 0) _dragPosition = 0;
+              });
+            },
+            onDragEnd: (maxOffset) {
+              if (_dragPosition >= maxOffset * 0.65) {
+                setState(() => _dragPosition = maxOffset);
+                widget.cubit.startTrip();
+              } else {
+                setState(() => _dragPosition = 0.0);
+              }
+            },
+          ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildSwipeButton(BuildContext context) {
+class _PickupTimeBanner extends StatelessWidget {
+  final String pickupTime;
+
+  const _PickupTimeBanner({required this.pickupTime});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
+      decoration: BoxDecoration(
+        color: AppColors.pickupTimeBg,
+        borderRadius: BorderRadius.circular(8.r),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.access_time_filled,
+            size: 16.sp,
+            color: AppColors.primary,
+          ),
+          SizedBox(width: 8.w),
+          Text(
+            'Pickup time: ~ $pickupTime',
+            style: TextStyle(
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w500,
+              color: AppColors.primary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SwipeToStartButton extends StatelessWidget {
+  final double dragPosition;
+  final ValueChanged<double> onDragUpdate;
+  final ValueChanged<double> onDragEnd;
+
+  const _SwipeToStartButton({
+    required this.dragPosition,
+    required this.onDragUpdate,
+    required this.onDragEnd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final availableWidth = constraints.maxWidth;
         final handleWidth = 48.w;
         final maxOffset = availableWidth - handleWidth - 4.w;
+        final clampedDrag = dragPosition.clamp(0.0, maxOffset);
 
         return Container(
           height: 52.h,
@@ -109,34 +150,19 @@ class _DriverTripAcceptedSheetState extends State<DriverTripAcceptedSheet> {
                 ),
               ),
               Positioned(
-                right: (maxOffset - _dragPosition).clamp(0.0, maxOffset) + 2.w,
+                right: (maxOffset - clampedDrag) + 2.w,
                 child: GestureDetector(
                   onHorizontalDragUpdate: (details) {
-                    setState(() {
-                      _dragPosition -= details.delta.dx;
-                      if (_dragPosition < 0) _dragPosition = 0;
-                      if (_dragPosition > maxOffset) _dragPosition = maxOffset;
-                    });
+                    onDragUpdate(-details.delta.dx);
                   },
-                  onHorizontalDragEnd: (details) {
-                    if (_dragPosition >= maxOffset * 0.7) {
-                      setState(() => _dragPosition = maxOffset);
-                      widget.cubit.startTrip();
-                    } else {
-                      setState(() => _dragPosition = 0.0);
-                    }
-                  },
-                  child: Container(
+                  onHorizontalDragEnd: (_) => onDragEnd(maxOffset),
+                  child: SizedBox(
                     width: handleWidth,
                     height: 48.h,
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
                     child: Icon(
                       Icons.keyboard_double_arrow_right,
-                      color: AppColors.primary,
-                      size: 24.sp,
+                      color: AppColors.white,
+                      size: 28.sp,
                     ),
                   ),
                 ),

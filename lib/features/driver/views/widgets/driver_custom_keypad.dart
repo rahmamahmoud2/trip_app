@@ -52,7 +52,7 @@ class DriverCustomKeypadSheet extends StatelessWidget {
             AppStrings.offerYourFare,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 17.sp,
+              fontSize: 15.sp,
               fontWeight: FontWeight.w500,
               color: AppColors.darkText,
               height: 1.2,
@@ -63,30 +63,28 @@ class DriverCustomKeypadSheet extends StatelessWidget {
             state.fareInputString,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 56.sp,
-              fontWeight: FontWeight.w700,
+              fontSize: 35.sp,
+              fontWeight: FontWeight.w500,
               color: AppColors.darkText,
               height: 1.0,
               letterSpacing: -0.5,
             ),
           ),
-          SizedBox(height: 20.h),
-          Divider(height: 1, thickness: 1, color: AppColors.borderGray),
-          SizedBox(height: 16.h),
+          SizedBox(height: 12.h),
           Text(
-            "${AppStrings.customerOffer}: ${AppStrings.egp} $customerOffer",
+            "${AppStrings.customerOffer}: ${AppStrings.egp}$customerOffer",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               fontWeight: FontWeight.w400,
-              color: AppColors.grayText,
+              color: AppColors.black,
               height: 1.3,
             ),
           ),
           SizedBox(height: 20.h),
           SizedBox(
             width: double.infinity,
-            height: 50.h,
+            height: 55.h,
             child: ElevatedButton(
               onPressed: () => cubit.submitOffer(),
               style: ElevatedButton.styleFrom(
@@ -100,7 +98,7 @@ class DriverCustomKeypadSheet extends StatelessWidget {
                 AppStrings.offer,
                 style: TextStyle(
                   fontSize: 16.sp,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w400,
                   color: AppColors.white,
                 ),
               ),
@@ -217,7 +215,7 @@ class DriverCustomKeypadSheet extends StatelessWidget {
             child: Icon(
               Icons.backspace_outlined,
               size: 24.sp,
-              color: const Color.fromARGB(255, 23, 23, 23),
+              color: AppColors.black,
             ),
           ),
         ),

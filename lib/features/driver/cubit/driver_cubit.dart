@@ -7,10 +7,13 @@ class DriverCubit extends Cubit<DriverState> {
   DriverCubit() : super(const DriverState());
 
   Timer? _replyTimer;
+  Timer? _offerTimer;
+  static const Duration _offerDuration = Duration(seconds: 30);
 
   @override
   Future<void> close() {
     _replyTimer?.cancel();
+    _offerTimer?.cancel();
     return super.close();
   }
 
@@ -20,22 +23,26 @@ class DriverCubit extends Cubit<DriverState> {
 
   void selectRequest(DriverRequestModel request) {
     final defaultCounterFare = request.offeredFare + 9;
+    _startOfferTimer();
     emit(
       state.copyWith(
         selectedRequest: request,
         counterFare: defaultCounterFare,
         fareInputString: defaultCounterFare.toString(),
         step: DriverStep.requestDetails,
+        offerProgress: 0.0,
       ),
     );
   }
 
   void skipRequest() {
     _replyTimer?.cancel();
+    _stopOfferTimer();
     emit(
       state.copyWith(
         step: DriverStep.feed,
         clearSelectedRequest: true,
+        offerProgress: 0.0,
       ),
     );
   }
@@ -53,7 +60,8 @@ class DriverCubit extends Cubit<DriverState> {
 
   void acceptDirectly() {
     _replyTimer?.cancel();
-    emit(state.copyWith(step: DriverStep.tripAccepted));
+    _stopOfferTimer();
+    emit(state.copyWith(step: DriverStep.tripAccepted, offerProgress: 1.0));
   }
 
   void selectQuickFare(int fare) {
@@ -96,7 +104,8 @@ class DriverCubit extends Cubit<DriverState> {
       _replyTimer?.cancel();
       _replyTimer = Timer(const Duration(seconds: 3), () {
         if (!isClosed && state.step == DriverStep.waitingForReply) {
-          emit(state.copyWith(step: DriverStep.tripAccepted));
+          _stopOfferTimer();
+          emit(state.copyWith(step: DriverStep.tripAccepted, offerProgress: 1.0));
         }
       });
     }
@@ -104,20 +113,60 @@ class DriverCubit extends Cubit<DriverState> {
 
   void passengerAcceptsOffer() {
     _replyTimer?.cancel();
-    emit(state.copyWith(step: DriverStep.tripAccepted));
+    _stopOfferTimer();
+    emit(state.copyWith(step: DriverStep.tripAccepted, offerProgress: 1.0));
   }
 
   void startTrip() {
-    emit(state.copyWith(step: DriverStep.tripStarted));
+    _stopOfferTimer();
+    emit(state.copyWith(step: DriverStep.tripStarted, offerProgress: 1.0));
   }
 
   void resetToFeed() {
     _replyTimer?.cancel();
+    _stopOfferTimer();
     emit(
       state.copyWith(
         step: DriverStep.feed,
         clearSelectedRequest: true,
+        offerProgress: 0.0,
       ),
     );
+  }
+
+  void _startOfferTimer() {
+    _offerTimer?.cancel();
+    final startedAt = DateTime.now();
+
+    _offerTimer = Timer.periodic(const Duration(milliseconds: 50), (timer) {
+      if (isClosed) {
+        timer.cancel();
+        return;
+      }
+
+      final elapsed = DateTime.now().difference(startedAt);
+      final progress =
+          (elapsed.inMilliseconds / _offerDuration.inMilliseconds).clamp(0.0, 1.0);
+
+      emit(state.copyWith(offerProgress: progress));
+
+      if (progress >= 1.0) {
+        timer.cancel();
+        _onOfferTimedOut();
+      }
+    });
+  }
+
+  void _stopOfferTimer() {
+    _offerTimer?.cancel();
+    _offerTimer = null;
+  }
+
+  void _onOfferTimedOut() {
+    if (state.step == DriverStep.requestDetails ||
+        state.step == DriverStep.customFare ||
+        state.step == DriverStep.waitingForReply) {
+      skipRequest();
+    }
   }
 }

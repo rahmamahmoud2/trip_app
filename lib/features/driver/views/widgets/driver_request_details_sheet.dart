@@ -22,6 +22,7 @@ class DriverRequestDetailsSheet extends StatelessWidget {
     return DriverRequestOfferCard(
       request: request,
       cubit: cubit,
+      offerProgress: state.offerProgress,
     );
   }
 }

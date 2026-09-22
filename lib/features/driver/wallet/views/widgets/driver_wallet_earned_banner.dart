@@ -38,11 +38,11 @@ class DriverWalletEarnedBanner extends StatelessWidget {
                   Icon(Icons.money, color: AppColors.accentGreen, size: 20.sp),
                   SizedBox(width: 8.w),
                   Text(
-                    '+ ${earnedAmount.toInt()} EGP',
+                    ' ${earnedAmount.toInt()} EGP',
                     style: TextStyle(
                       fontSize: 15.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.accentGreen,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.black,
                     ),
                   ),
                 ],
