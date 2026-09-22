@@ -5,7 +5,7 @@ class WalletTransactionModel {
   final String title;
   final String time;
   final int amount;
-  final bool isCredit; // true for +, false for -
+  final bool isCredit;
   final TransactionType type;
 
   const WalletTransactionModel({

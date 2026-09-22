@@ -72,7 +72,7 @@ class WalletPaymentMethodSection extends StatelessWidget {
         ),
         SizedBox(height: 40.h),
 
-        // "+ Add Payment Method" Button (Left aligned, compact)
+        // "+ Add Payment Method" Button
         Align(
           alignment: Alignment.centerLeft,
           child: ElevatedButton.icon(

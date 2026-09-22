@@ -6,7 +6,7 @@ abstract class AppColors {
   static const Color primary600 = Color(0xFF1C64F2);
   static const Color primaryLight = Color(0xFFEBF2FE);
 
-  // Base Neutrals
+  // Base =
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color transparent = Colors.transparent;
@@ -23,12 +23,12 @@ abstract class AppColors {
   static const Color borderGray = Color(0xFFE5E7EB);
   static const Color dividerColor = Color(0xFFF3F4F6);
 
-  // Status & Accents
+  // Status
   static const Color accentGreen = Color(0xFF0E9F6E);
   static const Color starYellow = Color(0xFFFACA15);
   static const Color dangerRed = Color.fromARGB(255, 245, 114, 114);
 
-  // Onboarding Indicators & Buttons
+  // Onboarding & Buttons
   static const Color indicatorInactive = Color(0x66FFFFFF);
   static const Color indicatorActive = Color(0xFFFFFFFF);
   static const Color buttonBg = Color(0xFFFFFFFF);
@@ -40,25 +40,13 @@ abstract class AppColors {
   static const Color shadowDark = Color(0x26000000);
   static const Color shadowFloating = Color(0x40000000);
 
-  // Map Marker Accents
-  static const Color mapPinHalo = Color(0x331C64F2);
-  static const Color mapPinShadow = Color(0x661C64F2);
-
-  // Wallet Gradients & Accents
+  // Wallet
   static const Color walletGradientStart = Color(0xFF689BF9);
   static const Color walletGradientEnd = Color(0xFF1C64F2);
   static const Color walletShadow = Color(0x591C64F2);
   static const Color walletCardStart = Color(0xFF8BAEF8);
   static const Color walletCardEnd = Color(0xFF9DB9F9);
   static const Color walletCardShape = Color(0x33FFFFFF);
-
-  // Wallet Transaction Categories
-  static const Color fawryBg = Color(0xFFFEF08A);
-  static const Color fawryIcon = Color(0xFFCA8A04);
-  static const Color cardBg = Color(0xFFFFEDD5);
-  static const Color cardIcon = Color(0xFFEA580C);
-  static const Color paypalBg = Color(0xFFDBEAFE);
-  static const Color paypalIcon = Color(0xFF2563EB);
 
   // Driver Feature Colors
   static const Color overlayDark = Color(0xCC000000);

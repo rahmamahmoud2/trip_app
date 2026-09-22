@@ -53,7 +53,7 @@ class WalletScreen extends StatelessWidget {
 
             SizedBox(height: 16.h),
 
-            // Previous Transactions (Tuesday, 19 June)
+            // Previous Transactions
             _buildDateHeader(AppStrings.tuesday19June),
             SizedBox(height: 8.h),
             ...WalletTransactionModel.previousTransactions.map(

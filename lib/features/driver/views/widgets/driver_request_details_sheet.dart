@@ -39,10 +39,7 @@ class DriverRequestDetailsSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          DriverRequestInfoRow(
-            request: request,
-            showProgressBar: true,
-          ),
+          DriverRequestInfoRow(request: request, showProgressBar: true),
           SizedBox(height: 16.h),
 
           // Accept for X EGP Button
@@ -69,7 +66,7 @@ class DriverRequestDetailsSheet extends StatelessWidget {
           ),
           SizedBox(height: 14.h),
 
-          // "Offer your fare" text
+          // Offer your fare text
           Center(
             child: Text(
               AppStrings.offerYourFare,
@@ -82,7 +79,7 @@ class DriverRequestDetailsSheet extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
 
-          // Quick fare chips (55, 60, 65, edit)
+          // Quick fare
           Row(
             children: [
               _buildQuickChip(55),

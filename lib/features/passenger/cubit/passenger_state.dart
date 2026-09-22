@@ -3,16 +3,16 @@ import 'package:trip_app/features/passenger/matching/models/driver_offer_model.d
 import '../ride/models/ride_type_model.dart';
 
 enum PassengerBookingStep {
-  /// Screen 2 & 3: Selecting Ride or Comfort, entering fare, confirming
+  //Selecting Ride or Comfort, entering fare, confirming
   selectRide,
 
-  /// Screen 4: Showing route on map, travel time badge, Find a Ride button
+  //Showing route on map, travel time badge, Find a Ride button
   routePreview,
 
-  /// Screen 5: Searching for drivers, ability to raise/lower fare
+  //Searching for drivers, ability to raise/lower fare
   findingDriver,
 
-  /// Screen 6: Driver offers received, can accept/decline or cancel
+  // Driver offers received, can accept/decline or cancel
   driverOffers,
 }
 

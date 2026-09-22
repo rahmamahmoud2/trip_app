@@ -33,7 +33,7 @@ class OnboardingBottomBar extends StatelessWidget {
     );
   }
 
-  /// Row showing Indicator Dots on the left and "Next" button on the right
+  ///  Indicator Dots and Next button
   Widget _buildIndicatorAndNextRow() {
     return Row(
       key: const ValueKey('indicator_and_next'),
@@ -60,7 +60,7 @@ class OnboardingBottomBar extends StatelessWidget {
     );
   }
 
-  /// Full-width "Sign Up / Log In" button for the last onboarding screen
+  // "Sign Up / Log In" button
   Widget _buildFullWidthAuthButton() {
     return SizedBox(
       key: const ValueKey('auth_full_button'),

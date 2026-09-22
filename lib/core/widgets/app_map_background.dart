@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/app_assets.dart';
 
-/// Full-screen static map image used on passenger and driver home screens.
+/// map image used on passenger and driver home screens.
 class AppMapBackground extends StatelessWidget {
   const AppMapBackground({super.key});
 

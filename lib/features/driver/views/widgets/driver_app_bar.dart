@@ -27,15 +27,11 @@ class DriverAppBar extends StatelessWidget {
           // Menu button
           IconButton(
             onPressed: onMenuPressed,
-            icon: Icon(
-              Icons.menu,
-              color: AppColors.darkText,
-              size: 24.sp,
-            ),
+            icon: Icon(Icons.menu, color: AppColors.darkText, size: 24.sp),
             splashRadius: 22.r,
           ),
 
-          // Online / Offline Toggle Pill
+          // Online / Offline
           Container(
             padding: EdgeInsets.all(4.w),
             decoration: BoxDecoration(

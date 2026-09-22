@@ -4,13 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trip_app/core/constants/app_colors.dart';
 import 'package:trip_app/features/passenger/matching/views/driver_offers_sheet.dart';
 import 'package:trip_app/features/passenger/matching/views/finding_driver_sheet.dart';
+import 'package:trip_app/features/passenger/ride/views/ride_selection_sheet.dart';
+import 'package:trip_app/features/passenger/ride/views/route_preview_sheet.dart';
+
 import '../cubit/passenger_cubit.dart';
 import '../cubit/passenger_state.dart';
 
-import '../drawer/views/passenger_drawer.dart';
-import 'widgets/passenger_map_view.dart';
-import '../ride/views/ride_selection_sheet.dart';
-import '../ride/views/route_preview_sheet.dart';
+import '../drawer/passenger_drawer.dart';
+import '../widgets/passenger_map_view.dart';
 
 class PassengerHomeScreen extends StatelessWidget {
   const PassengerHomeScreen({super.key});
@@ -49,7 +50,7 @@ class _PassengerHomeScreenBodyState extends State<_PassengerHomeScreenBody> {
               // Interactive Map View
               Positioned.fill(child: PassengerMapView(state: state)),
 
-              // Floating Menu Button
+              // Floating  Menu Button
               Positioned(
                 top: 16.h,
                 left: 16.w,

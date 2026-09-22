@@ -10,22 +10,19 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   static const Duration animationDuration = Duration(milliseconds: 350);
   static const Curve animationCurve = Curves.easeInOut;
 
-  /// Triggered when the user swipes the PageView
+  ///  user swipes the PageView
   void onPageChanged(int index) {
     emit(state.copyWith(currentPage: index));
   }
 
-  /// Triggered when clicking the "Next" button
+  ///  clicking the "Next" button
   void nextPage(PageController controller) {
     if (!state.isLastPage) {
-      controller.nextPage(
-        duration: animationDuration,
-        curve: animationCurve,
-      );
+      controller.nextPage(duration: animationDuration, curve: animationCurve);
     }
   }
 
-  /// Triggered when clicking the "Skip" button to jump to the final page
+  /// clicking the "Skip" button to jump to the final page
   void skip(PageController controller) {
     final int lastIndex = OnboardingItemModel.pages.length - 1;
     controller.animateToPage(
@@ -35,12 +32,10 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     );
   }
 
-  /// Triggered when clicking "Sign Up / Log In" on the last page
+  ///clicking "Sign Up / Log In"
   void onAuthAction(BuildContext context) {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const PassengerHomeScreen(),
-      ),
+      MaterialPageRoute(builder: (context) => const PassengerHomeScreen()),
     );
   }
 }

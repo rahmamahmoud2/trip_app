@@ -36,7 +36,7 @@ class PassengerCubit extends Cubit<PassengerState> {
     }
   }
 
-  /// Screen 2/3 -> Screen 4: Confirm ride details, show route on map
+  ///  Confirm ride details, show route on map
   void confirmRide() {
     final effectiveFare = state.fare > 0 ? state.fare : 50;
     emit(
@@ -47,7 +47,7 @@ class PassengerCubit extends Cubit<PassengerState> {
     );
   }
 
-  /// Screen 4 -> Screen 5: Start looking for drivers
+  /// Start looking for drivers
   void findRide() {
     _searchTimer?.cancel();
     emit(
@@ -58,7 +58,7 @@ class PassengerCubit extends Cubit<PassengerState> {
     );
   }
 
-  /// Triggered manually or by timer: Screen 5 -> Screen 6
+  /// Triggered manually or by timer
   void showOffers() {
     _searchTimer?.cancel();
     emit(

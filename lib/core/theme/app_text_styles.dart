@@ -5,7 +5,7 @@ import '../constants/app_colors.dart';
 abstract class AppTextStyles {
   static const String fontFamily = 'Inter';
 
-  /// Large Onboarding Title (bold, white)
+  /// Large Onboarding Title
   static TextStyle get onboardingTitle => TextStyle(
     fontFamily: fontFamily,
     fontSize: 24.sp,
@@ -15,7 +15,7 @@ abstract class AppTextStyles {
     letterSpacing: 0.25,
   );
 
-  /// Onboarding Subtitle/Body (regular/medium, semi-translucent white)
+  /// Onboarding Subtitle/Body
   static TextStyle get onboardingSubtitle => TextStyle(
     fontFamily: fontFamily,
     fontSize: 12.sp,
@@ -33,7 +33,7 @@ abstract class AppTextStyles {
     color: AppColors.white,
   );
 
-  /// Next Button text (bold, primary blue)
+  /// Next Button text
   static TextStyle get nextButton => TextStyle(
     fontFamily: fontFamily,
     fontSize: 15.sp,
@@ -41,7 +41,7 @@ abstract class AppTextStyles {
     color: AppColors.black,
   );
 
-  /// Full-width Auth Button text ("Sign Up / Log In")
+  ///  text ("Sign Up / Log In")
   static TextStyle get authButton => TextStyle(
     fontFamily: fontFamily,
     fontSize: 13.sp,
